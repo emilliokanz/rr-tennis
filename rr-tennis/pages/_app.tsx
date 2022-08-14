@@ -1,6 +1,9 @@
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/700.css'
 import '@fontsource/montserrat/600.css'
+import "@fontsource/league-spartan/400.css"
+import "@fontsource/league-spartan/700.css"
+import "@fontsource/league-spartan/600.css"
 import '../styles/globals.css'
 import theme from '../styles/theme'
 import type { AppProps } from 'next/app'

@@ -29,19 +29,21 @@ export default function Header () {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const textVariant = useBreakpointValue({ base: '14px', md: '16px', lg: '18px' });  
   return (
-  <Box  
+  <Box
+    letterSpacing={'0.5'}  
+    boxShadow={'lg'}
     color={'brand.text'} 
-    fontWeight={'semibold'}
-    height={'100px'}
+    fontWeight={'300'}
+    height={'60px'}
     fontSize={textVariant} 
     position={'fixed'} 
-    zIndex={99999} 
+    zIndex={3} 
     width={'full'}>
       <Flex
         position={'relative'}
         backdropFilter='blur(10px)'
-        px={'15vw'}
-        height='100px'
+        px={'19vw'}
+        height='60px'
         alignItems='center'
         justifyContent='space-between'
         bg= 'brand.primary'
@@ -87,7 +89,9 @@ export default function Header () {
             letterSpacing='1.5px'
           >
             {links.map((data : any, index: number)=> (
-              <Box _hover={{ color: '#4B4B4B' }}>
+              <Box
+              key={index} 
+              _hover={{ color: '#4B4B4B' }}>
                 <NextLink href=''>
                   <Text cursor={'pointer'}>{data}</Text>
                 </NextLink>
@@ -109,7 +113,9 @@ export default function Header () {
             >
             <Stack as={'nav'} spacing={4}>
               {links.map((data : any, index: number)=> (
-              <Box _hover={{ color: '#4B4B4B' }}>
+              <Box 
+              key={index}
+              _hover={{ color: '#4B4B4B' }}>
                 <NextLink href=''>
                   <Text cursor={'pointer'}>{data}</Text>
                 </NextLink>

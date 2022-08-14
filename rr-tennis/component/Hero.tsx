@@ -53,9 +53,10 @@ export default function Hero() {
           <Flex
           px={'1.8vw'}
           flexDirection="column"
-          width={'25rem'}
-          height={'24rem'}
-          mx={'18vw'}
+          textAlign={{base: 'center',md:'left'}}
+          width={{base:'100%', md: '25rem'}}
+          height={{base:'80%', md: '25rem'}}
+          mx={'20.5vw'}
           bg={'brand.card'}
           color={'brand.secondary'}>
             <Text
@@ -65,7 +66,9 @@ export default function Hero() {
             >
               {data.title}
             </Text>
-            <Divider width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
+            <Flex justify={{base: 'center', md: 'left'}}>
+              <Divider width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
+            </Flex>
             <Text
             pt={'1vh'}
             fontSize={bodyVariant}

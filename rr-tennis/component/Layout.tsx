@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/react';
 
 export default function layout({ children }: any) {
   return (
-    <Box >
+    <Box>
       <Header />
       <section>{children}</section>
       <Footer />

@@ -10,7 +10,7 @@ export default function Footer() {
     flexWrap={'wrap'}
     bg={'brand.primary'}
     color='brand.text'
-    px={'15vw'}>
+    px={'19.5vw'}>
       <Box 
         left='40vw'
         ml={{base: '15vw',sm:'2'}} 

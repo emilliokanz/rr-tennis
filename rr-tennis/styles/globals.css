@@ -14,6 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+#camp .carousel-indicators { visibility: hidden !important; }
+#event .carousel-indicators { visibility: hidden !important; }
 
 @media (prefers-color-scheme: dark) {
   html {
