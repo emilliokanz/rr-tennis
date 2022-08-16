@@ -55,7 +55,8 @@ export default function Events() {
           </Flex>
         <Text 
         pt={'29px'}
-        fontSize={bodyVariant}>
+        fontSize={bodyVariant}
+        pb={'2vh'}>
         We have held multiple Tennis Events
         around Java. Let us be your partner on managing your tennis event
         </Text>

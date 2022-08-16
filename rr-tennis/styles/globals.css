@@ -16,6 +16,13 @@ a {
 }
 #camp .carousel-indicators { visibility: hidden !important; }
 #event .carousel-indicators { visibility: hidden !important; }
+.hidden {
+  overflow: hidden;
+  height: 3rem;
+}
+.visible {
+  overflow: visible
+}
 
 @media (prefers-color-scheme: dark) {
   html {

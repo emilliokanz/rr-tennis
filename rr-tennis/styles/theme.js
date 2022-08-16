@@ -11,7 +11,7 @@ const theme = extendTheme({
       bgLight: 'white',
       bgDark:'#f5f5f5',
       text: 'white',
-      card: 'rgba(217, 217, 217, 0.83)',
+      card: 'rgba(217, 217, 217, 0.7)',
     }
   },
   components: {

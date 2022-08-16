@@ -43,6 +43,7 @@ export default function Camp() {
           </Flex>
         <Text 
         pt={'29px'}
+        pb={'2vh'}
         fontSize={bodyVariant}>
         From 4 year old beginners, to 18 year old pros! Our after-school academy has a place for every junior player!
         </Text>

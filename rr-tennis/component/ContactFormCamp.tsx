@@ -24,7 +24,7 @@ const data = [
 
 
 
-export default function ContactForm() {
+export default function ContactFormCamp() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });

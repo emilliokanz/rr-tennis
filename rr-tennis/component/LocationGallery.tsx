@@ -26,17 +26,17 @@ export default function LocationGallery() {
   const textVariant = useBreakpointValue({ base: '14px', md: '18px' });
   return (
   <Flex
-   px={'20.5vw'}
+   px={'20vw'}
    pt={'6vh'}
-   pb={'10vh'}
+   pb={'15vh'}
    bg={'brand.bgLight'}
    color={'brand.secondary'}
    textAlign={'center'}
    flexDirection={'column'}
    justifyContent={'center'}>
     <SimpleGrid 
-    height={'680px'}
-    columns={2}
+    height={{base:'1100px', md:'1500px', lg: '680px'}}
+    columns={{base: 1, lg: 2}}
     gap={'none'}
     >
       {data.map((data : any, index : number) => (
@@ -45,13 +45,14 @@ export default function LocationGallery() {
            key={index}
            bgRepeat="no-repeat"
            bgPosition={'center'}
-           height="390px"
+           height={{base:'300px', md: '390px'}}
            width={'100%'}
           >
             <Image 
             src={data.image}
             width={'100%'}
-            height="390px"></Image>
+            height={{base:'300px', md: '390px'}}
+            ></Image>
           </Box>
         
       ))}

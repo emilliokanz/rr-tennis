@@ -67,9 +67,9 @@ export default function Header () {
         <Box 
           position={{base:'absolute', md:'static'}} 
           left='40vw'
-          ml={'2'} 
-          padding={'3'} 
-          paddingTop={'6'}>
+          mr={'2vw'}
+          padding={'1'} 
+          paddingTop={'3'}>
           <Link href={'/'}>
             <Image
               src={'/Group 31.png'}
@@ -85,7 +85,7 @@ export default function Header () {
           <HStack
             display={{ base: 'none', md: 'flex' }}
             as='nav'
-            spacing={{base: '25px', lg: '50px'}}
+            spacing={{base: '3vw', lg: '50px'}}
             letterSpacing='1.5px'
           >
             {links.map((data : any, index: number)=> (
@@ -93,7 +93,10 @@ export default function Header () {
               key={index} 
               _hover={{ color: '#4B4B4B' }}>
                 <NextLink href=''>
-                  <Text cursor={'pointer'}>{data}</Text>
+                  <Text
+                   cursor={'pointer'}
+                   textAlign={'center'}
+                   >{data}</Text>
                 </NextLink>
             </Box>
             ))}
