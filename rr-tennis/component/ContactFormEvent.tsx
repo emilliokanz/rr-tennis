@@ -23,9 +23,7 @@ const data = [
 ]
 
 
-
-export default function ContactFormCamp() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+export default function ContactFormEvent() {
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (
@@ -42,18 +40,16 @@ export default function ContactFormCamp() {
       fontSize={headerVariant}
       fontWeight='bold'
       >
-        CONTACT US
+        REGISTRATION FORM
       </Text>
       <Divider alignSelf={'center'} width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
-        <Text
-        
+      <Text
         textAlign={'center'}
         fontSize={bodyVariant}
         >
-          Send us request, and we’ll be in touch 
+          Contact us if you have any question
         </Text>
         <Text
-     
         textAlign={'center'}
         fontSize={bodyVariant}
         >
@@ -125,31 +121,23 @@ export default function ContactFormCamp() {
                     />
                   </FormControl>
                 </Box> 
-                <Box pt={'3vh'}>  
-                <FormControl>
-                  <Input 
-                    bg={'rgba(221, 221, 221, 1)'}
-                    type='text' 
-                    name='Pax' 
-                    placeholder='Pax'
-                    />
-                  </FormControl>
-                </Box>
               </Box>
             </Flex>
             <Box 
             pt={'3vh'}
             pb={'3vh'}>
-              <FormControl>
+              <FormControl
+              >
+                <FormLabel>Payment Receipt</FormLabel>
                 <Input
                   bg={'rgba(221, 221, 221, 1)'}
                   type='text' 
-                  name='message' 
-                  placeholder='Message'
+                  name='upload' 
+                  placeholder='Upload File'
                   />
               </FormControl>
             </Box>
-            <Button size={{base: 'xs', md: 'md', lg: 'lg'} } variant='ghost'> Submit</Button>  
+            <Button size={{base: 'xs', md: 'md', lg: 'lg'} } variant='ghost'> Submit </Button>  
           </form>
         </Box>
     </Flex>

@@ -201,9 +201,8 @@ export default function CampPackage() {
       flexWrap={'wrap'}
       >
       {adultData.map((data: any, index: number) => (
-      <Box>
+      <Box key={data.index}>
         <ToggleItem 
-        key={data.index}
         title={data.title} 
         age={data.age}
         description={data.description}
