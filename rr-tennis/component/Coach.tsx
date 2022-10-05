@@ -83,7 +83,7 @@ export default function Coach() {
               color={'brand.primary'}
               textAlign={'left'} >
                 {data[0].description}
-                <Button color={'brand.primary'} variant='link' bgColor={'white'} onClick={onOpen}>.  More Details</Button>
+                <Button color={'brand.primary'} variant='link' bgColor={'white'} onClick={onOpen}>  More Details</Button>
               </Text>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay zIndex={4} />
@@ -120,7 +120,7 @@ export default function Coach() {
               color={'brand.primary'}
               textAlign={'left'} >
                 {data[0].description}
-                <Button color={'brand.primary'} variant='link' bgColor={'white'} onClick={onOpen}>.   More Details</Button>
+                <Button color={'brand.primary'} variant='link' bgColor={'white'} onClick={onOpen}>   More Details</Button>
               </Text>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay zIndex={4} />

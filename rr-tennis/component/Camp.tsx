@@ -5,22 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'next/link'
 import Image from 'next/image';
 
-const data = [
-  {
-    image: '/image 2.png',
-    title: 'Junior Camp',
-    link: '/'
-  },
-  {
-    image: '/image 2.png',
-    title: 'Adult Camp',
-    link: '/'
-  },
-]
 
-export default function Camp() {
+export default function Camp(campHomeData: any) {
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
+  console.log(campHomeData.data.data.attributes.camp[0].image.data.attributes.url)
   return (
     <Flex
     justify={'center'}
@@ -36,7 +25,7 @@ export default function Camp() {
         fontWeight='bold'
         pt={'4.5vh'}
         >
-          OUR CAMP
+          {campHomeData.data.data.attributes.title}
         </Text>
           <Flex justify={{base: 'center', lg: 'left'}}>
             <Divider  width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
@@ -45,16 +34,16 @@ export default function Camp() {
         pt={'29px'}
         pb={'2vh'}
         fontSize={bodyVariant}>
-        From 4 year old beginners, to 18 year old pros! Our after-school academy has a place for every junior player!
+          {campHomeData.data.data.attributes.description}
         </Text>
       </Box>
       <Box 
       width={{base:'100%', md: '390px'}}
       py={{base: '4.5vh', md: '0'}}>
       <Carousel id='camp'>
-      {data.map((data: any, index: number) =>(
-        <Carousel.Item key={index}>
-          <Link href={data.link}>
+      {campHomeData.data.data.attributes.camp.map((data: any, index: number) => (
+        <Carousel.Item  key={index}>
+          <Link href={'/'}>
             <Flex
             height={{base:'250px', md: '390px'}}
             width={{base:'100%', md: '390px'}}
@@ -68,11 +57,12 @@ export default function Camp() {
               <Box
               height={{base:'250px', md: '390px'}}
               width={{base:'100%', md: '390px'}}
-              backgroundImage={"url('image 2.png')"}
+              backgroundImage={`url${data.image.url}`}
               backgroundSize="cover"
               backgroundPosition="center"
               backgroundRepeat="no-repeat"
               >
+                {data.image.url}
               </Box>
               <Box 
               fontWeight={'semibold'}
@@ -80,7 +70,7 @@ export default function Camp() {
               color={'brand.bgLight'}
               textAlign="center"
               >
-                {data.title}
+                {data.title}, {data.image.data.attribute.previewUrl}
               </Box>
             </Flex>  
           </Link>

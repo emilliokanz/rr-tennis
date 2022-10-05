@@ -26,7 +26,7 @@ export default function Hero() {
   const [width, setWidth] = React.useState(0);
 	  React.useEffect(() => {
 	    setWidth(window.innerWidth);
-	  });
+	  },[]);
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   return (
@@ -105,12 +105,12 @@ export default function Hero() {
       >
         <Text fontWeight={'semibold'}>Age Group</Text>
         {data[0].age.map((data: any, index: number) => (
-            <li>{data}</li>
+            <li key={index}>{data}</li>
         ))}
         <Divider></Divider>
         <Text fontWeight={'semibold'} >Match Types</Text>
         {data[0].match.map((data: any, index: number) => (
-            <Text>{data}</Text>
+            <Text key={index} >{data}</Text>
         ))}
         <Divider></Divider>
         <Text fontWeight={'semibold'}>Admission Fee</Text>

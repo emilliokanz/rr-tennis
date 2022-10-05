@@ -7,7 +7,8 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 
-export default function About() {
+export default function About(data: any) {
+  console.log("data aboutUs = ", data)
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (
@@ -23,13 +24,13 @@ export default function About() {
       fontSize={headerVariant}
       fontWeight='bold'
       >
-        ABOUT RR TENNIS
+        {data.data.data.attributes.title}
       </Text>
       <Divider alignSelf={'center'} width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
       <Text 
       pt={'4.5vh'}
       fontSize={bodyVariant}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+        {data.data.data.attributes.description}
       </Text>
     </Flex>
   )
