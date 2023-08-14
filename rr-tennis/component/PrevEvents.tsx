@@ -28,7 +28,9 @@ const data = [
 
 
 
-export default function PrevEvents() {
+export default function PrevEvents(receivedData: any) {
+  const serverData = receivedData.data.data;
+  console.log(serverData)
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (
@@ -55,7 +57,7 @@ export default function PrevEvents() {
         > 
         
         <Accordion allowToggle>
-        {data.map((data: any, index: number)=> (
+        {serverData.map((data: any, index: number)=> (
           <AccordionItem key={index}>
           <h2>
             <AccordionButton width={'59vw'}>
@@ -64,7 +66,7 @@ export default function PrevEvents() {
               textAlign='left'
               fontWeight={'semibold'}
               >
-                {data.title}
+                {data.attributes.title}
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -78,12 +80,12 @@ export default function PrevEvents() {
             <Box
             textAlign={'left'}
             width={{base:'100%', md: '50%'}}
-            >{data.description}
+            >{data.attributes.description}
             </Box>
             <Box
             height={{base:'250px', md: '45vh'}}
             width={{base:'100%', md: '50%'}}
-            backgroundImage={"url('image 11.png')"}
+            backgroundImage={`url(${process.env.CMS_URL}${data.attributes.image.data.attributes.url})`}
             backgroundSize="cover"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"

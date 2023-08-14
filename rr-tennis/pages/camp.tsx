@@ -5,6 +5,9 @@ import Layout from '../component/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Flex, Box, Button, Text, useBreakpointValue, Divider} from '@chakra-ui/react';
 import Link from 'next/link'
+import {getProps} from '../queries/queries'
+import { InferGetServerSidePropsType } from 'next';
+
 
 const data = [
   {
@@ -28,7 +31,10 @@ const data = [
 ]
 
 
-export default function Hero() {
+export default function Hero({
+  juniorCampData,
+  adultCampData,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   return (
@@ -80,8 +86,12 @@ export default function Hero() {
             </Flex>  
           </Flex>
     </Box>
-    <CampPackage />  
+    <CampPackage data = {{juniorCampData, adultCampData}}/>  
     <ContactFormCamp />
   </Layout>
   )
+}
+
+export async function getServerSideProps() {
+  return await getProps()
 }

@@ -17,7 +17,9 @@
     "@fontsource/league-spartan": "^4.5.11",
     "@fontsource/montserrat": "^4.5.11",
     "@fontsource/montserrat-alternates": "^4.5.10",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.0",
+    "dotenv": "^16.3.1",
     "framer-motion": "^6.5.1",
     "graphql": "^16.6.0",
     "next": "12.2.3",
@@ -25,7 +27,8 @@
     "react-bootstrap": "^2.4.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.34.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-redux": "^8.1.2"
   },
   "devDependencies": {
     "@types/node": "18.6.3",

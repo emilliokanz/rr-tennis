@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Flex, Box, Button, Text, useBreakpointValue, Divider} from '@chakra-ui/react';
 import Link from 'next/link'
 
-const data = [
+const hardData = [
   {
     image: '/image 2.png',
     title: 'JOIN OUR CAMP',
@@ -26,7 +26,8 @@ const data = [
 ]
 
 
-export default function Hero() {
+export default function Hero(data: any) {
+  const heroData = data.data.data.attributes.content;
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   return (
@@ -35,12 +36,12 @@ export default function Hero() {
    pb={'10vh'}
    bg={'brand.bgDark'}>
     <Carousel>
-    {data.map((data: any, index: number) =>(
+    {heroData.map((data: any, index: number) =>(
       <Carousel.Item key={index}>
         <Flex
         pt={'20vh'}
         height={'600px'}
-        backgroundImage={"url('image 2.png')"}
+        backgroundImage={`url(${process.env.CMS_URL}${data.image.data[0].attributes.url})`}
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"

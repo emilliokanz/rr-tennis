@@ -134,8 +134,11 @@ const ToggleItem = ({title, age, description, id, price, color, index, link}: an
   )
 }
 
-export default function CampPackage() {
-  
+export default function CampPackage(receivedData: any) {
+  const juniorCamp = receivedData.data.juniorCampData.data;
+  const adultCamp = receivedData.data.adultCampData.data;
+  console.log(receivedData, juniorCamp, adultCamp)
+
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (
@@ -166,18 +169,18 @@ export default function CampPackage() {
       justify={{base: 'center', lg: 'space-between'}}
       flexWrap={'wrap'}
       >
-      {juniorData.map((data: any, index: number) => (
+      {juniorCamp.map((data: any, index: number) => (
       <Box>
         <ToggleItem 
-        key={data.index}
-        title={data.title} 
-        age={data.age}
-        description={data.description}
-        id={data.id}
-        price={data.price}
-        color={data.color}
-        index={data.index}
-        link={data.link}
+        key={data.attributes.index}
+        title={data.attributes.title} 
+        age={data.attributes.age}
+        description={data.attributes.description}
+        id={data.attributes.id}
+        price={data.attributes.price}
+        color={data.attributes.color}
+        index={data.attributes.index}
+        link={data.attributes.link}
         />
       </Box>     
       ))}
@@ -200,17 +203,18 @@ export default function CampPackage() {
       justify={{base: 'center', lg: 'space-evenly'}}
       flexWrap={'wrap'}
       >
-      {adultData.map((data: any, index: number) => (
+      {adultCamp.map((data: any, index: number) => (
       <Box key={data.index}>
         <ToggleItem 
-        title={data.title} 
-        age={data.age}
-        description={data.description}
-        id={data.id}
-        price={data.price}
-        color={data.color}
-        index={data.index}
-        link={data.link}
+         key={data.attributes.index}
+        title={data.attributes.title} 
+        age={data.attributes.age}
+        description={data.attributes.description}
+        id={data.attributes.id}
+        price={data.attributes.price}
+        color={data.attributes.color}
+        index={data.attributes.index}
+        link={data.attributes.link}
         />
       </Box>     
       ))}

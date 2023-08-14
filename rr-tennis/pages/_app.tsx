@@ -8,6 +8,8 @@ import '../styles/globals.css'
 import theme from '../styles/theme'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react';
+import { Provider } from 'react-redux'
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
