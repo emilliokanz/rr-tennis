@@ -20,7 +20,9 @@ const data = [
 ]
 
 
-export default function LocationGallery() {
+export default function LocationGallery(receivedData: any) {
+  const serverData = receivedData.data.data.attributes.gallery.data
+  console.log(serverData)
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const textVariant = useBreakpointValue({ base: '14px', md: '18px' });
@@ -39,7 +41,7 @@ export default function LocationGallery() {
     columns={{base: 1, lg: 2}}
     gap={'none'}
     >
-      {data.map((data : any, index : number) => (
+      {serverData.map((data : any, index : number) => (
        
           <Box
            key={index}
@@ -49,9 +51,10 @@ export default function LocationGallery() {
            width={'100%'}
           >
             <Image 
-            src={data.image}
+            src={`${process.env.CMS_URL}${data.attributes.url}`}
             width={'100%'}
             height={{base:'300px', md: '390px'}}
+            alt='galery-location'
             ></Image>
           </Box>
         

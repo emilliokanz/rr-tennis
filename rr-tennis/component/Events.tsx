@@ -30,7 +30,8 @@ const data = [
   },
 ]
 
-export default function Events() {
+export default function Events(receivedData: any) {
+  const eventData = receivedData.data.data.attributes
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (
@@ -48,7 +49,7 @@ export default function Events() {
         fontWeight='bold'
         pt={'4.5vh'}
         >
-          TENNIS EVENT ORGANIZER
+          {eventData.title}
         </Text>
           <Flex justify={{base: 'center', lg: 'left'}}>
             <Divider  width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
@@ -57,8 +58,7 @@ export default function Events() {
         pt={'29px'}
         fontSize={bodyVariant}
         pb={'2vh'}>
-        We have held multiple Tennis Events
-        around Java. Let us be your partner on managing your tennis event
+        {eventData.description}
         </Text>
       </Box>
       <Box 
@@ -72,7 +72,7 @@ export default function Events() {
          <Box
           height={{base:'250px', md: '390px'}}
           width={{base:'100%', md: '390px'}}
-          backgroundImage={"url('image 6.png')"}
+          backgroundImage={`url(${process.env.CMS_URL}${eventData.image.data.attributes.url})`}
           backgroundSize="cover"
           backgroundPosition="center"
           backgroundRepeat="no-repeat"

@@ -18,10 +18,9 @@ import Image from 'next/image';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 const links = [
-  'About',
-  'Tennis Camp',
-  'Tournament Organizer',
-  'Contact',
+  {title: 'About', link: '/#about'},
+  {title: 'Tennis Camp', link: '/camp'},
+  {title: 'Contact', link: '/#contact'},
 ]
 
 
@@ -72,6 +71,7 @@ export default function Header () {
           paddingTop={'3'}>
           <Link href={'/'}>
             <Image
+              alt="logo"
               src={'/Group 31.png'}
               height={46}
               width={126}
@@ -92,11 +92,11 @@ export default function Header () {
               <Box
               key={index} 
               _hover={{ color: '#4B4B4B' }}>
-                <NextLink href=''>
+                <NextLink href={`${process.env.WEB_URL}${data.link}`}>
                   <Text
                    cursor={'pointer'}
                    textAlign={'center'}
-                   >{data}</Text>
+                   >{data.title}</Text>
                 </NextLink>
             </Box>
             ))}
@@ -119,7 +119,7 @@ export default function Header () {
               <Box 
               key={index}
               _hover={{ color: '#4B4B4B' }}>
-                <NextLink href=''>
+                <NextLink href='/camp'>
                   <Text cursor={'pointer'}>{data}</Text>
                 </NextLink>
               </Box>

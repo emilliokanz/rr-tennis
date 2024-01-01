@@ -3,7 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 
 
 const httpLink = createHttpLink({
-  uri: 'http://178.128.100.115:1338/graphql',
+  uri: `${process.env.CMS_URL}/graphql`,
 });
 
 const authLink = setContext((_, { headers }) => {

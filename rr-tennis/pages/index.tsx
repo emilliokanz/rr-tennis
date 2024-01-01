@@ -11,44 +11,48 @@ import Upcoming from '../component/Upcoming'
 import Location from '../component/Location'
 import LocationGallery from '../component/LocationGallery'
 import ContactForm from '../component/ContactForm'
-import { getAboutUsData } from '../queries/aboutUsData'
-import { getCampHomeData } from '../queries/campHomeData'
+import {getProps} from '../queries/queries'
 
 export default function Home ({
   aboutUsData,
-  campHomeData
+  campHomeData,
+  homeHeroData,
+  coachData,
+  eventData,
+  pastEventData,
+  upcomingEventData,
+  locationData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const textVariant = useBreakpointValue({ base: '14px', md: '18px' });
   const layoutVariant = useBreakpointValue({ base: '50px', md: '200px' });
   const cardPadding = useBreakpointValue({ base: '25px', md: '50px' });
-  console.log("components data", aboutUsData, campHomeData)
+  
   return (
     <Layout>
-      <Hero />
-      <About data={aboutUsData} />
-      <Camp data={campHomeData}/>
-      <Coach />
-      <Events />
-      <PrevEvents />
-      <Upcoming />
-      <Location />
-      <LocationGallery />
+      <Hero data = {homeHeroData}/>
+      <div id='about'></div>
+      <About data = {aboutUsData}/>
+      <div id='camp'></div>
+      <Camp data = {campHomeData}/>
+      <div id='coach'></div>
+      <Coach data = {coachData}/>
+      <div id='events'></div>
+      <Events data = {eventData}/>
+      <div id='prev-events'></div>
+      <PrevEvents data = {pastEventData}/>
+      <div id='up-events'></div>
+      <Upcoming data = {upcomingEventData}/>
+      <Location data = {locationData}/>
+      <LocationGallery data = {locationData}/>
+      <div id='contact'></div>
       <ContactForm />
     </Layout>
   )
 }
 
 export async function getServerSideProps() {
-  const aboutUsData = await getAboutUsData();
-  const campHomeData = await getCampHomeData();
- 
-  return {
-    props: {
-      aboutUsData: aboutUsData.props.aboutUsData,
-      campHomeData: campHomeData.props.campHomeData
-    },
-  };
+  return await getProps()
 }
 

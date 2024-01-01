@@ -20,7 +20,9 @@ const data = [
 ]
 
 
-export default function Upcoming() {
+export default function Upcoming(receivedData: any) {
+  const serverData = receivedData.data.data
+  console.log(serverData)
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const textVariant = useBreakpointValue({ base: '14px', md: '18px' });
@@ -43,12 +45,12 @@ export default function Upcoming() {
     <Divider alignSelf={'center'} width={'159px'} borderWidth="1px" borderColor={'brand.accent'}></Divider>
      <Box pt={'4.5vh'}>
       <Carousel id='event'>
-      {data.map((data: any, index: number) =>(
+      {serverData.map((data: any, index: number) =>(
         <Carousel.Item key={index}>
           <Flex
           pt={'20vh'}
           height={'600px'}
-          backgroundImage={"url('image 11.png')"}
+          backgroundImage={`url(${process.env.CMS_URL}${data.attributes.image.data.attributes.url})`}
           backgroundSize="cover"
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
@@ -74,19 +76,12 @@ export default function Upcoming() {
               fontSize={bodyVariant}
               fontWeight='bold'
               >
-                {data.title}
+                {data.attributes.title}
               </Text>
               <Flex justify={{base: 'center', md: 'right'}}>
               </Flex>
-              <Text
-              pt={'1vh'}
-              fontSize={textVariant}
-              fontWeight='400'
-              >
-                {data.description}
-              </Text>
               <Box pt={'3vh'}>
-                <Link href={data.link}>
+                <Link href={`/event/${data.attributes.slug}`}>
                   <Button size={{base: 'xs', md: 'md', lg: 'lg'} } variant='ghost'> See Details</Button>
                 </Link>
               </Box>

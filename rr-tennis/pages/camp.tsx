@@ -5,6 +5,9 @@ import Layout from '../component/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Flex, Box, Button, Text, useBreakpointValue, Divider} from '@chakra-ui/react';
 import Link from 'next/link'
+import {getProps} from '../queries/queries'
+import { InferGetServerSidePropsType } from 'next';
+
 
 const data = [
   {
@@ -28,10 +31,16 @@ const data = [
 ]
 
 
-export default function Hero() {
+export default function Hero({
+  juniorCampData,
+  adultCampData,
+  homeHeroData
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const image = homeHeroData.data.attributes.content[0].image.data[0].attributes.url
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   return (
+  <div>
   <Layout>
     <Box
     pt={'22vh'}
@@ -40,7 +49,7 @@ export default function Hero() {
           <Flex
           pt={'20vh'}
           height={'600px'}
-          backgroundImage={"url('image 2.png')"}
+          backgroundImage={`${process.env.CMS_URL}${image}`}
           backgroundSize="cover"
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
@@ -80,8 +89,14 @@ export default function Hero() {
             </Flex>  
           </Flex>
     </Box>
-    <CampPackage />  
-    <ContactFormCamp />
+    <CampPackage data = {{juniorCampData, adultCampData}}/>
+    <ContactFormCamp data = {{juniorCampData, adultCampData}}/>
   </Layout>
+  <Box id='register'></Box>
+  </div>
   )
+}
+
+export async function getServerSideProps() {
+  return await getProps()
 }

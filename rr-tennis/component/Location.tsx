@@ -15,7 +15,8 @@ const data = [
 ]
 
 
-export default function Location() {
+export default function Location(receivedData: any) {
+  const serverData = receivedData.data.data.attributes
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const textVariant = useBreakpointValue({ base: '14px', md: '18px' });
@@ -40,7 +41,7 @@ export default function Location() {
           <Flex
           pt={'20vh'}
           height={'600px'}
-          backgroundImage={"url('image 12.png')"}
+          backgroundImage={`url(${process.env.CMS_URL}${serverData.location[0].header.data.attributes.url})`}
           backgroundSize="cover"
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
@@ -66,7 +67,7 @@ export default function Location() {
               fontSize={bodyVariant}
               fontWeight='bold'
               >
-                {data[0].title}
+                {serverData.location[0].title}
               </Text>
               <Flex justify={{base: 'center', md: 'right'}}>
               </Flex>
@@ -75,7 +76,7 @@ export default function Location() {
               fontSize={textVariant}
               fontWeight='400'
               >
-                {data[0].description}
+                {serverData.location[0].address}
               </Text>
             </Flex>  
           </Flex>
