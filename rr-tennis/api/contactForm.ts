@@ -1,7 +1,7 @@
 import axios, { HttpStatusCode } from 'axios';
 import { formIface, FormType } from '../inteface/interface';
 
-export async function sendEventForm(payload: formIface, file: File, formType: FormType,) {
+export async function sendEventForm(payload: formIface, formType: FormType, file?: File) {
   if(formType == FormType.tournament) {
     return await event(payload, file)
   }
@@ -16,8 +16,9 @@ export async function sendEventForm(payload: formIface, file: File, formType: Fo
 
 }
 
-async function event(payload: formIface, file: File) {
+async function event(payload: formIface, file?: File) {
     const form = new FormData();
+    //@ts-ignore
     form.append("files.payment", file, file.name)
     form.append('data', JSON.stringify(payload));
 

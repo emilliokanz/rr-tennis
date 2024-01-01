@@ -65,7 +65,7 @@ export default function ContactFormCamp(option: any) {
     const payload = formInput
     
     try{
-      await sendEventForm(payload, null, FormType.camp)
+      await sendEventForm(payload, FormType.camp)
       toast(successToast);
     } catch(error) {
       toast(errorToast);

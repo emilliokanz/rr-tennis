@@ -55,7 +55,7 @@ export default function ContactFormEvent(option: any) {
     const payload = formInput
     
     try{
-      await sendEventForm(payload, payment, FormType.tournament)
+      await sendEventForm(payload, FormType.tournament, payment)
       toast(successToast);
     } catch(error) {
       toast(errorToast);
