@@ -32,7 +32,6 @@ const data = [
 
 export default function Events(receivedData: any) {
   const eventData = receivedData.data.data.attributes
-  console.log('ini', eventData)
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (

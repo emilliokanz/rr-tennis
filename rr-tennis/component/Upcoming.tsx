@@ -80,15 +80,8 @@ export default function Upcoming(receivedData: any) {
               </Text>
               <Flex justify={{base: 'center', md: 'right'}}>
               </Flex>
-              <Text
-              pt={'1vh'}
-              fontSize={textVariant}
-              fontWeight='400'
-              >
-                {data.attributes.description}
-              </Text>
               <Box pt={'3vh'}>
-                <Link href={data.attributes.link}>
+                <Link href={`/event/${data.attributes.slug}`}>
                   <Button size={{base: 'xs', md: 'md', lg: 'lg'} } variant='ghost'> See Details</Button>
                 </Link>
               </Box>

@@ -42,7 +42,7 @@ export default function Camp(campHomeData: any) {
       <Carousel id='camp'>
       {campHomeData.data.data.attributes.camp.map((data: any, index: number) => (
         <Carousel.Item  key={index}>
-          <Link href={'/'}>
+          <Link href={'/camp'}>
             <Flex
             height={{base:'250px', md: '390px'}}
             width={{base:'100%', md: '390px'}}

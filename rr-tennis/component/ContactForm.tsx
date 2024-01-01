@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Flex, 
   Text, 
@@ -12,8 +12,13 @@ import {
 
   Button,
   FormControl,
+  useToast,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { FormType, formIface, handleFormInput } from '../inteface/interface';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { sendEventForm } from '../api/contactForm';
+import { errorToast, successToast } from '../styles/components';
 
 const data = [
   {
@@ -23,9 +28,38 @@ const data = [
 ]
 
 
-
 export default function ContactForm() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [formInput, setFormInput] = useState({
+    email: '',
+    name: '',
+    phone: '',
+    address: '',
+    message: '',
+  })
+
+  const handleChange = ({ target: {name, value}}: handleFormInput) => {
+    setFormInput(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const { register, formState: {errors}, handleSubmit } = useForm<formIface>();
+
+  const toast = useToast()
+
+  const onSubmit: SubmitHandler<formIface> = async (e: any) => {
+    const payload = formInput
+    
+    try{
+      await sendEventForm(payload, null, FormType.contact)
+      toast(successToast);
+    } catch(error) {
+      toast(errorToast);
+      console.log(error);
+    }
+  }
+  
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
   return (
@@ -75,22 +109,35 @@ export default function ContactForm() {
               <Box width={'49%'}>
                 <Box pt={'1vh'}>  
                   <FormControl>
-                    <Input 
+                  <Input
+                    {...register('name', {
+                      required: 'This is required',
+                    })} 
+                    key='name'
                     bg={'rgba(221, 221, 221, 1)'}
                     type='text' 
                     name='name' 
+                    value={formInput.name} 
+                    onChange={handleChange} 
                     placeholder='Name'
                     />
+                    {errors.name && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>{errors.name.message}</Box>}
                   </FormControl>
                 </Box>  
                 <Box pt={'3vh'}>  
                   <FormControl>
-                  <Input 
+                  <Input
+                    {...register('email', {
+                      required: 'This is required',
+                    })}  
                     bg={'rgba(221, 221, 221, 1)'}
                     type='text' 
                     name='email' 
+                    value={formInput.email} 
+                    onChange={handleChange}
                     placeholder='Email'
                     />
+                    {errors.email && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>{errors.email.message}</Box>}
                   </FormControl>
                 </Box>  
               </Box>
@@ -98,21 +145,33 @@ export default function ContactForm() {
               <Box pt={'1vh'}>  
                   <FormControl>
                   <Input 
+                    {...register('phone', {
+                      required: 'This is required',
+                    })} 
                     bg={'rgba(221, 221, 221, 1)'}
                     type='text' 
                     name='phone' 
+                    value={formInput.phone} 
+                    onChange={handleChange} 
                     placeholder='Phone'
                     />
+                    {errors.phone && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>{errors.phone.message}</Box>}
                   </FormControl>
                 </Box>  
                 <Box pt={'3vh'}>  
                   <FormControl>
                   <Input 
+                    {...register('address', {
+                      required: 'This is required',
+                    })} 
                     bg={'rgba(221, 221, 221, 1)'}
                     type='text' 
                     name='address' 
+                    value={formInput.address} 
+                    onChange={handleChange} 
                     placeholder='Address'
                     />
+                    {errors.address && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>{errors.address.message}</Box>}
                   </FormControl>
                 </Box> 
               </Box>
@@ -124,12 +183,20 @@ export default function ContactForm() {
                 <Input
                   bg={'rgba(221, 221, 221, 1)'}
                   type='text' 
-                  name='message' 
+                  name='message'
+                  value={formInput.message} 
+                  onChange={handleChange}  
                   placeholder='Message'
                   />
               </FormControl>
             </Box>
-            <Button size={{base: 'xs', md: 'md', lg: 'lg'} } variant='ghost'> Submit</Button>  
+            <Button 
+            size={{base: 'xs', md: 'md', lg: 'lg'} } 
+            variant='ghost'
+            onClick={handleSubmit(onSubmit)}
+            > 
+            Submit
+            </Button>  
           </form>
         </Box>
     </Flex>

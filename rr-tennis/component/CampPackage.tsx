@@ -123,7 +123,7 @@ const ToggleItem = ({title, age, description, id, price, color, index, link}: an
           Price: {price}
           </Text>
           <Box pt={'3vh'}>
-              <Link href={link}>
+              <Link href={'/camp/#register'}>
                 <Button size={{base: 'xs', md: 'md', lg: 'lg'} } variant='ghost'> Sign-up</Button>
               </Link>
             </Box>
@@ -137,7 +137,6 @@ const ToggleItem = ({title, age, description, id, price, color, index, link}: an
 export default function CampPackage(receivedData: any) {
   const juniorCamp = receivedData.data.juniorCampData.data;
   const adultCamp = receivedData.data.adultCampData.data;
-  console.log(receivedData, juniorCamp, adultCamp)
 
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
   const headerVariant = useBreakpointValue({ base: '42', md: '48' });
@@ -166,13 +165,13 @@ export default function CampPackage(receivedData: any) {
       <Flex
       py={'5vh'}
       gap={'5vh'}
-      justify={{base: 'center', lg: 'space-between'}}
+      justify={{base: 'center', lg: 'space-evenly'}}
       flexWrap={'wrap'}
       >
       {juniorCamp.map((data: any, index: number) => (
-      <Box>
+      <Box key={data.attributes.index}
+      >
         <ToggleItem 
-        key={data.attributes.index}
         title={data.attributes.title} 
         age={data.attributes.age}
         description={data.attributes.description}
@@ -204,7 +203,7 @@ export default function CampPackage(receivedData: any) {
       flexWrap={'wrap'}
       >
       {adultCamp.map((data: any, index: number) => (
-      <Box key={data.index}>
+      <Box key={index}>
         <ToggleItem 
          key={data.attributes.index}
         title={data.attributes.title} 

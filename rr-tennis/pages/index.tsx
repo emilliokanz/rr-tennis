@@ -28,17 +28,25 @@ export default function Home ({
   const textVariant = useBreakpointValue({ base: '14px', md: '18px' });
   const layoutVariant = useBreakpointValue({ base: '50px', md: '200px' });
   const cardPadding = useBreakpointValue({ base: '25px', md: '50px' });
+  
   return (
     <Layout>
       <Hero data = {homeHeroData}/>
+      <div id='about'></div>
       <About data = {aboutUsData}/>
+      <div id='camp'></div>
       <Camp data = {campHomeData}/>
+      <div id='coach'></div>
       <Coach data = {coachData}/>
+      <div id='events'></div>
       <Events data = {eventData}/>
+      <div id='prev-events'></div>
       <PrevEvents data = {pastEventData}/>
+      <div id='up-events'></div>
       <Upcoming data = {upcomingEventData}/>
       <Location data = {locationData}/>
       <LocationGallery data = {locationData}/>
+      <div id='contact'></div>
       <ContactForm />
     </Layout>
   )

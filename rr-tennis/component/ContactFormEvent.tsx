@@ -11,11 +11,13 @@ import {
   FormControl,
   Select,
   FormErrorMessage,
+  useToast,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { sendEventForm } from '../api/contactForm';
-import { eventForm, handleFormInput } from '../inteface/interface';
-import { useForm } from 'react-hook-form';
+import { formIface, FormType, handleFormInput } from '../inteface/interface';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { errorToast, successToast } from '../styles/components';
 
 const data = [
   {
@@ -28,13 +30,14 @@ export default function ContactFormEvent(option: any) {
   const ageOption = option.data.age;
   const categoryOption = option.data.category;
   
-  const [formInput, setFormInput] = useState<eventForm>({
+  const [formInput, setFormInput] = useState({
     email: '',
     name: '',
     phone: '',
     address: '',
     age: '',
     category: '',
+    file: null,
   })
   
   const [payment, setPayment] = useState<File>()
@@ -46,11 +49,18 @@ export default function ContactFormEvent(option: any) {
     }));
   };
 
-  const onSubmit = async (e: any) => {
-    e.preventDefault()
+  const toast = useToast()
+
+  const onSubmit: SubmitHandler<formIface> = async (e: any) => {
     const payload = formInput
     
-    await sendEventForm(payload, payment)
+    try{
+      await sendEventForm(payload, payment, FormType.tournament)
+      toast(successToast);
+    } catch(error) {
+      toast(errorToast);
+      console.log(error);
+    }
   }
   
   const onFileSelect = (event: any) => {
@@ -69,7 +79,7 @@ export default function ContactFormEvent(option: any) {
     )
   })
 
-  const { register, formState: {errors}, handleSubmit } = useForm<eventForm>();
+  const { register, formState: {errors}, handleSubmit } = useForm<formIface>();
 
 
   const bodyVariant = useBreakpointValue({ base: '18px', md: '24px' });
@@ -132,7 +142,6 @@ export default function ContactFormEvent(option: any) {
                     placeholder='Name'
                     />
                     {errors.name && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>{errors.name.message}</Box>}
-
                   </FormControl>
                 </Box>  
                 <Box pt={'3vh'}>  
@@ -235,8 +244,7 @@ export default function ContactFormEvent(option: any) {
                   onChange={event => onFileSelect(event)} 
                   placeholder='Upload File'
                   />
-                  {errors.file && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>{errors.file.message}</Box>}
-
+                  {errors.file && <Box position={'absolute'} ml={'5pt'} color={'red.500'}>This is required</Box>}
               </FormControl>
             </Box>
             <Button 

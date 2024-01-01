@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Flex, Box, Button, Text, useBreakpointValue, Divider} from '@chakra-ui/react';
+import { Flex, Box, Button, Text, useBreakpointValue, Divider, Card, CardHeader, Heading, CardBody} from '@chakra-ui/react';
 import Link from 'next/link'
 import { getProps } from '../../queries/queries';
 import { InferGetServerSidePropsType } from 'next';
@@ -103,47 +103,75 @@ export default function Page({
       borderTopWidth={{base: '0px', lg:'1px'}}
       borderBottomWidth={'1px'}
       borderX={'1px'}
-      borderColor={'gray.200'}
-      // borderWidth={'1px'}
+      borderColor={'white'}
       >
-        <Text fontWeight={'semibold'}>Age Group</Text>
-        {data.attributes.age.map((data: any, index: number) => (
-            <li key={index}>{data}</li>
-        ))}
-        <Divider></Divider>
-        <Text fontWeight={'semibold'} >Match Types</Text>
-        {data.attributes.match.map((data: any, index: number) => (
-            <Text key={index} >{data}</Text>
-        ))}
-        <Divider></Divider>
-        <Text fontWeight={'semibold'}>Admission Fee</Text>
-        <Text>{data.attributes.admission}</Text>
-        <Divider></Divider>
-        <Text fontWeight={'semibold'}>Prize</Text>
-        <Text>{data.attributes.prize}</Text>
+        <Card height={'33%'} key={'elevated'} variant={'elevated'}>
+        <CardHeader>
+          <Heading size='md'> Age Group</Heading>
+        </CardHeader>
+        <CardBody>
+          {data.attributes.age.map((data: any, index: number) => (
+              <li style={{fontSize: '1.5vh'}} key={index}>{data}</li>
+              ))}
+        </CardBody>
+        </Card>
+
+        <Card height={'33%'} key={'elevated'} variant={'elevated'}>
+        <CardHeader>
+          <Heading size='md'> Match Type</Heading>
+        </CardHeader>
+        <CardBody>
+          {data.attributes.match.map((data: any, index: number) => (
+              <li style={{fontSize: '1.5vh'}} key={index}>{data}</li>
+          ))}
+        </CardBody>
+        </Card>
+
+        <Card height={'33%'} key={'elevated'} variant={'elevated'}>
+        <CardHeader>
+          <Heading size='md'> Admission Fee</Heading>
+        </CardHeader>
+        <CardBody>
+          {data.attributes.admission}
+        </CardBody>
+        </Card>
       </Flex>
       <Flex
-      textAlign={'center'}
-      gap={'1rem'}
-      width={{base: '100%', lg: '50%'}}
-      justify={'center'}
-      borderX={'1px'}
-      borderTop={'1px'}
-      borderColor={'gray.200'}
-      borderBottomWidth={{base: '0px', lg:'1px'}}
-      flexDirection={'column'}
-      pt={'1rem'}
-      px={'5rem'}
+     width={{base: '100%', lg: '50%'}}
+     textAlign={'center'}
+     gap={'1rem'}
+     flexDirection={'column'}
+     py={'1rem'}
+     px={'5rem'}
+     borderTopWidth={{base: '0px', lg:'1px'}}
+     borderBottomWidth={'1px'}
+     borderX={'1px'}
+     borderColor={'white'}
       >
-        <Text fontWeight={'semibold'}>Date</Text>
-        <Text>{data.attributes.date}</Text>
-        <Divider></Divider>
-        <Text fontWeight={'semibold'}>Location</Text>
-        <Text>{data.attributes.location}</Text>
-        <Divider
-        height={width < 920? '1px' : 'none'}
-        width={width < 992? 'auto' : '0px'}
-        ></Divider>
+        <Card height={'33%'} key={'elevated'} variant={'elevated'}>
+        <CardHeader>
+          <Heading size='md'> Prize</Heading>
+        </CardHeader>
+        <CardBody>
+        {data.attributes.prize}
+        </CardBody>
+        </Card>
+        <Card height={'33%'} key={'elevated'} variant={'elevated'}>
+        <CardHeader>
+          <Heading size='md'> Date</Heading>
+        </CardHeader>
+        <CardBody>
+        {data.attributes.date}
+        </CardBody>
+        </Card>
+        <Card height={'33%'} key={'elevated'} variant={'elevated'}>
+        <CardHeader>
+          <Heading size='md'> Location</Heading>
+        </CardHeader>
+        <CardBody>
+        {data.attributes.location}
+        </CardBody>
+        </Card>
       </Flex>
     </Flex>
     <ContactFormEvent data = {{

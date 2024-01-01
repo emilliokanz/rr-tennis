@@ -1,11 +1,14 @@
-export interface eventForm {
+export interface formIface {
     name: string,
     email: string,
-    category: string,
+    category?: string,
     phone: string,
     address: string,
-    age: string,
-    file: any
+    class?: string,
+    age?: string,
+    file?: any,
+    pax?: string,
+    message?: string,
 }
 
 export interface handleFormInput {
@@ -13,4 +16,10 @@ export interface handleFormInput {
         name: string,
         value: string | number | Date
     }
+}
+
+export enum FormType {
+    camp = 'camp',
+    tournament = 'tournament',
+    contact = 'contact',
 }
