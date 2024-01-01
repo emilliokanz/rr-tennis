@@ -50,8 +50,8 @@ export default function ContactForm() {
 
   const onSubmit: SubmitHandler<formIface> = async (e: any) => {
     const payload = formInput
-    
     try{
+      // @ts-ignore
       await sendEventForm(payload, null, FormType.contact)
       toast(successToast);
     } catch(error) {
